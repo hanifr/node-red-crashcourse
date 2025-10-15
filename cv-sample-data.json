@@ -1,0 +1,48 @@
+{
+  "userId": "clxro64fi0001cigy3qw4cp08",
+  "title": "Full Stack Developer",
+  "email": "tronexia@gmail.com",
+  "phone": "+6011-6261-2468",
+  "address": "SEA-IC Lab, Level 4, Block 2, UiTM Shah Alam, 40450 Selangor",
+  "skills": ["Nuxt", "React", "MySQL", "C++", "Git"],
+  "jobs": [
+    {
+      "company": "Eagle Attech Sdn. Bhd",
+      "position": "Chief Technical Officer",
+      "startDate": "May 2021",
+      "endDate": "Present",
+      "tasks": [
+        "Supervised end-to-end project development lifecycles (devOps)",
+        "Led a team of engineers across software development, hardware design and quality assurance",
+        "Provided strategic direction to align technological roadmaps and capabilities with overall business goals",
+        "Established best practices and processes around developing robust and scalable products reliably",
+        "Collaborated closely with UX designers and product managers to enhance products features based on user feedback"
+      ]
+    },
+    {
+      "company": "Nexion System Ent.",
+      "position": "Junior Full Stack Developer",
+      "startDate": "June 2017",
+      "endDate": "December 2021",
+      "tasks": [
+        "Assisted with website development projects",
+        "Debugged and fixed issues with existing websites",
+        "Spearheaded migration to cloud infrastructure to improve system reliability"
+      ]
+    }
+  ],
+  "schools": [
+    {
+      "degree": "PhD in Functional Control Systems",
+      "schoolName": "Shibaura Institute of Technology",
+      "startDate": "November 2013",
+      "endDate": "Mar 2017"
+    }
+  ],
+  "links": {
+    "github": "https://github.com/hanifr",
+    "orcid": "https://orcid.org/0000-0002-7705-6876",
+    "ieee": "https://ieeexplore.ieee.org/author/38242309700"
+  },
+  "imageSrc": "https://raw.githubusercontent.com/hanifr/logos/master/hanif.png"
+}

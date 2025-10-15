@@ -1,0 +1,589 @@
+[
+    {
+        "id": "calc_flow",
+        "type": "tab",
+        "label": "Calculator Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "display",
+        "type": "ui-text",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "Display",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "style": false,
+        "font": "",
+        "fontSize": 32,
+        "color": "#000000",
+        "className": "",
+        "x": 900,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "btn_7",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "7",
+        "label": "7",
+        "order": 10,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "7",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_8",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "8",
+        "label": "8",
+        "order": 11,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "8",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_9",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "9",
+        "label": "9",
+        "order": 12,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "9",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_div",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "÷",
+        "label": "÷",
+        "order": 9,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#FFA500",
+        "className": "",
+        "icon": "",
+        "payload": "/",
+        "payloadType": "str",
+        "topic": "operator",
+        "topicType": "str",
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_4",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "4",
+        "label": "4",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_5",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "5",
+        "label": "5",
+        "order": 7,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "5",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 270,
+        "y": 260,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_6",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "6",
+        "label": "6",
+        "order": 8,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "6",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_mul",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "×",
+        "label": "×",
+        "order": 17,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#FFA500",
+        "className": "",
+        "icon": "",
+        "payload": "*",
+        "payloadType": "str",
+        "topic": "operator",
+        "topicType": "str",
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_1",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "1",
+        "label": "1",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_2",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "2",
+        "label": "2",
+        "order": 3,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_3",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "3",
+        "label": "3",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_sub",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "−",
+        "label": "−",
+        "order": 13,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#FFA500",
+        "className": "",
+        "icon": "",
+        "payload": "-",
+        "payloadType": "str",
+        "topic": "operator",
+        "topicType": "str",
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_clear",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "C",
+        "label": "C",
+        "order": 15,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#FF0000",
+        "className": "",
+        "icon": "",
+        "payload": "clear",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_0",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "0",
+        "label": "0",
+        "order": 14,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "number",
+        "topicType": "str",
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_equals",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "=",
+        "label": "=",
+        "order": 16,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#4CAF50",
+        "className": "",
+        "icon": "",
+        "payload": "equals",
+        "payloadType": "str",
+        "topic": "equals",
+        "topicType": "str",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "btn_add",
+        "type": "ui-button",
+        "z": "calc_flow",
+        "group": "calc_group",
+        "name": "+",
+        "label": "+",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#FFA500",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "+",
+        "payloadType": "str",
+        "topic": "operator",
+        "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "calc_logic"
+            ]
+        ]
+    },
+    {
+        "id": "calc_logic",
+        "type": "function",
+        "z": "calc_flow",
+        "name": "Calculator Logic",
+        "func": "// Initialize context variables if they don't exist\nif (context.get('display') === undefined) {\n    context.set('display', '0');\n    context.set('firstNumber', null);\n    context.set('operator', null);\n    context.set('waitingForSecondNumber', false);\n}\n\nlet display = context.get('display');\nlet firstNumber = context.get('firstNumber');\nlet operator = context.get('operator');\nlet waitingForSecondNumber = context.get('waitingForSecondNumber');\n\n// Handle different input types\nif (msg.topic === 'clear') {\n    // Clear everything\n    display = '0';\n    firstNumber = null;\n    operator = null;\n    waitingForSecondNumber = false;\n} \nelse if (msg.topic === 'number') {\n    // Handle number input\n    if (waitingForSecondNumber) {\n        display = msg.payload;\n        waitingForSecondNumber = false;\n    } else {\n        display = display === '0' ? msg.payload : display + msg.payload;\n    }\n} \nelse if (msg.topic === 'operator') {\n    // Handle operator input\n    if (firstNumber !== null && operator !== null && !waitingForSecondNumber) {\n        // Perform calculation if there's a pending operation\n        let secondNumber = parseFloat(display);\n        let result;\n        \n        switch (operator) {\n            case '+':\n                result = firstNumber + secondNumber;\n                break;\n            case '-':\n                result = firstNumber - secondNumber;\n                break;\n            case '*':\n                result = firstNumber * secondNumber;\n                break;\n            case '/':\n                result = secondNumber !== 0 ? firstNumber / secondNumber : 'Error';\n                break;\n        }\n        \n        display = result.toString();\n        firstNumber = result;\n    } else {\n        firstNumber = parseFloat(display);\n    }\n    \n    operator = msg.payload;\n    waitingForSecondNumber = true;\n} \nelse if (msg.topic === 'equals') {\n    // Handle equals\n    if (firstNumber !== null && operator !== null) {\n        let secondNumber = parseFloat(display);\n        let result;\n        \n        switch (operator) {\n            case '+':\n                result = firstNumber + secondNumber;\n                break;\n            case '-':\n                result = firstNumber - secondNumber;\n                break;\n            case '*':\n                result = firstNumber * secondNumber;\n                break;\n            case '/':\n                result = secondNumber !== 0 ? firstNumber / secondNumber : 'Error';\n                break;\n        }\n        \n        display = result.toString();\n        firstNumber = null;\n        operator = null;\n        waitingForSecondNumber = false;\n    }\n}\n\n// Save state\ncontext.set('display', display);\ncontext.set('firstNumber', firstNumber);\ncontext.set('operator', operator);\ncontext.set('waitingForSecondNumber', waitingForSecondNumber);\n\n// Send display value\nmsg.payload = display;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 300,
+        "wires": [
+            [
+                "display"
+            ]
+        ]
+    },
+    {
+        "id": "calc_group",
+        "type": "ui-group",
+        "name": "Simple Calculator",
+        "page": "calc_page",
+        "width": 4,
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "calc_page",
+        "type": "ui-page",
+        "name": "Calculator",
+        "ui": "calc_base",
+        "path": "/calculator",
+        "icon": "calculator",
+        "layout": "grid",
+        "theme": "calc_theme",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "calc_base",
+        "type": "ui-base",
+        "name": "Calculator Dashboard",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ]
+    },
+    {
+        "id": "calc_theme",
+        "type": "ui-theme",
+        "name": "Calculator Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        }
+    },
+    {
+        "id": "6fd876a1ba5c3928",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.29.0"
+        }
+    }
+]
