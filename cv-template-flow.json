@@ -1,0 +1,158 @@
+[
+    {
+        "id": "cv_flow",
+        "type": "tab",
+        "label": "CV Template Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cv_base",
+        "type": "ui-base",
+        "name": "CV Dashboard",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ]
+    },
+    {
+        "id": "cv_page",
+        "type": "ui-page",
+        "name": "CV Template",
+        "ui": "cv_base",
+        "path": "/cv",
+        "icon": "account_box",
+        "layout": "grid",
+        "theme": "cv_theme"
+    },
+    {
+        "id": "cv_theme",
+        "type": "ui-theme",
+        "name": "Professional Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#2c3e50",
+            "bgPage": "#ecf0f1",
+            "groupBg": "#ffffff",
+            "groupOutline": "#bdc3c7"
+        }
+    },
+    {
+        "id": "cv_group",
+        "type": "ui-group",
+        "name": "Curriculum Vitae",
+        "page": "cv_page",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": false
+    },
+    {
+        "id": "inject_cv_data",
+        "type": "inject",
+        "z": "cv_flow",
+        "name": "Load CV Data",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"userId\":\"clxro64fi0001cigy3qw4cp08\",\"title\":\"Full Stack Developer\",\"email\":\"tronexia@gmail.com\",\"phone\"+6011-6261-2468\",\"address\":\"SEA-IC Lab, Level 4, Block 2, UiTM Shah Alam, 40450 Selangor\",\"skills\":[\"Nuxt\",\"React\",\"MySQL\",\"C++\",\"Git\"],\"jobs\":[{\"company\":\"Eagle Attech Sdn. Bhd\",\"position\":\"Chief Technical Officer\",\"startDate\":\"May 2021\",\"endDate\":\"Present\",\"tasks\":[\"Supervised end-to-end project development lifecycles (devOps)\",\"Led a team of engineers across software development, hardware design and quality assurance\",\"Provided strategic direction to align technological roadmaps and capabilities with overall business goals\",\"Established best practices and processes around developing robust and scalable products reliably\",\"Collaborated closely with UX designers and product managers to enhance products features based on user feedback\"]},{\"company\":\"TXIO Freelancer Ent.\",\"position\":\"Junior Full Stack Developer\",\"startDate\":\"June 2017\",\"endDate\":\"December 2021\",\"tasks\":[\"Assisted with website development projects\",\"Debugged and fixed issues with existing websites\",\"Spearheaded migration to cloud infrastructure to improve system reliability\"]}],\"schools\":[{\"degree\":\"PhD in Functional Control Systems\",\"schoolName\":\"Shibaura Institute of Technology\",\"startDate\":\"November 2013\",\"endDate\":\"Mar 2017\"}],\"links\":{\"github\":\"https://github.com/hanifr\",\"orcid\":\"https://orcid.org/0000-0002-7705-6876\",\"ieee\":\"https://ieeexplore.ieee.org/author/38242309700\"},\"imageSrc\":\"https://raw.githubusercontent.com/hanifr/logos/master/aneh2killa.png\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 100,
+        "wires": [["process_cv_data"]]
+    },
+    {
+        "id": "process_cv_data",
+        "type": "function",
+        "z": "cv_flow",
+        "name": "Process CV Data",
+        "func": "// Store the CV data in flow context for reuse\nflow.set('cvData', msg.payload);\n\n// Pass the data through\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 100,
+        "wires": [["cv_template"]]
+    },
+    {
+        "id": "cv_template",
+        "type": "ui-template",
+        "z": "cv_flow",
+        "group": "cv_group",
+        "page": "",
+        "ui": "",
+        "name": "CV Display Template",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "format": "<template>\n    <div class=\"cv-container\">\n        <!-- Header Section -->\n        <div class=\"cv-header\">\n            <div class=\"profile-section\">\n                <img :src=\"msg.payload.imageSrc\" alt=\"Profile Picture\" class=\"profile-img\" />\n                <div class=\"header-info\">\n                    <h1 class=\"name\">{{ msg.payload.title || 'Professional Title' }}</h1>\n                    <div class=\"contact-info\">\n                        <div class=\"contact-item\">\n                            <v-icon small>mdi-email</v-icon>\n                            <span>{{ msg.payload.email }}</span>\n                        </div>\n                        <div class=\"contact-item\">\n                            <v-icon small>mdi-phone</v-icon>\n                            <span>{{ msg.payload.phone }}</span>\n                        </div>\n                        <div class=\"contact-item\">\n                            <v-icon small>mdi-map-marker</v-icon>\n                            <span>{{ msg.payload.address }}</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <!-- Skills Section -->\n        <div class=\"cv-section\" v-if=\"msg.payload.skills && msg.payload.skills.length > 0\">\n            <h2 class=\"section-title\">\n                <v-icon class=\"section-icon\">mdi-toolbox</v-icon>\n                Skills\n            </h2>\n            <div class=\"skills-container\">\n                <span v-for=\"skill in msg.payload.skills\" :key=\"skill\" class=\"skill-badge\">\n                    {{ skill }}\n                </span>\n            </div>\n        </div>\n\n        <!-- Work Experience Section -->\n        <div class=\"cv-section\" v-if=\"msg.payload.jobs && msg.payload.jobs.length > 0\">\n            <h2 class=\"section-title\">\n                <v-icon class=\"section-icon\">mdi-briefcase</v-icon>\n                Work Experience\n            </h2>\n            <div v-for=\"(job, index) in msg.payload.jobs\" :key=\"index\" class=\"experience-item\">\n                <div class=\"job-header\">\n                    <div>\n                        <h3 class=\"job-position\">{{ job.position }}</h3>\n                        <p class=\"job-company\">{{ job.company }}</p>\n                    </div>\n                    <div class=\"job-date\">{{ job.startDate }} - {{ job.endDate }}</div>\n                </div>\n                <ul class=\"task-list\">\n                    <li v-for=\"(task, taskIndex) in job.tasks\" :key=\"taskIndex\">\n                        {{ task }}\n                    </li>\n                </ul>\n            </div>\n        </div>\n\n        <!-- Education Section -->\n        <div class=\"cv-section\" v-if=\"msg.payload.schools && msg.payload.schools.length > 0\">\n            <h2 class=\"section-title\">\n                <v-icon class=\"section-icon\">mdi-school</v-icon>\n                Education\n            </h2>\n            <div v-for=\"(school, index) in msg.payload.schools\" :key=\"index\" class=\"education-item\">\n                <div class=\"education-header\">\n                    <div>\n                        <h3 class=\"degree\">{{ school.degree }}</h3>\n                        <p class=\"school-name\">{{ school.schoolName }}</p>\n                    </div>\n                    <div class=\"education-date\">{{ school.startDate }} - {{ school.endDate }}</div>\n                </div>\n            </div>\n        </div>\n\n        <!-- Links Section -->\n        <div class=\"cv-section\" v-if=\"msg.payload.links\">\n            <h2 class=\"section-title\">\n                <v-icon class=\"section-icon\">mdi-link</v-icon>\n                Professional Links\n            </h2>\n            <div class=\"links-container\">\n                <a v-if=\"msg.payload.links.github\" :href=\"msg.payload.links.github\" target=\"_blank\" class=\"link-item\">\n                    <v-icon small>mdi-github</v-icon>\n                    GitHub\n                </a>\n                <a v-if=\"msg.payload.links.orcid\" :href=\"msg.payload.links.orcid\" target=\"_blank\" class=\"link-item\">\n                    <v-icon small>mdi-account-circle</v-icon>\n                    ORCID\n                </a>\n                <a v-if=\"msg.payload.links.ieee\" :href=\"msg.payload.links.ieee\" target=\"_blank\" class=\"link-item\">\n                    <v-icon small>mdi-book-open-variant</v-icon>\n                    IEEE\n                </a>\n            </div>\n        </div>\n    </div>\n</template>\n\n<style scoped>\n.cv-container {\n    max-width: 1000px;\n    margin: 0 auto;\n    background: white;\n    padding: 40px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n}\n\n/* Header Styles */\n.cv-header {\n    border-bottom: 3px solid #2c3e50;\n    padding-bottom: 30px;\n    margin-bottom: 30px;\n}\n\n.profile-section {\n    display: flex;\n    align-items: center;\n    gap: 30px;\n}\n\n.profile-img {\n    width: 150px;\n    height: 150px;\n    border-radius: 50%;\n    object-fit: cover;\n    border: 4px solid #2c3e50;\n}\n\n.header-info {\n    flex: 1;\n}\n\n.name {\n    font-size: 2.5em;\n    color: #2c3e50;\n    margin: 0 0 15px 0;\n    font-weight: 700;\n}\n\n.contact-info {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.contact-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    color: #555;\n    font-size: 0.95em;\n}\n\n/* Section Styles */\n.cv-section {\n    margin-bottom: 35px;\n}\n\n.section-title {\n    font-size: 1.8em;\n    color: #2c3e50;\n    margin-bottom: 20px;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    border-bottom: 2px solid #ecf0f1;\n    padding-bottom: 10px;\n}\n\n.section-icon {\n    color: #3498db;\n}\n\n/* Skills Styles */\n.skills-container {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n}\n\n.skill-badge {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    padding: 8px 16px;\n    border-radius: 20px;\n    font-size: 0.9em;\n    font-weight: 500;\n    box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n}\n\n/* Experience Styles */\n.experience-item {\n    margin-bottom: 25px;\n    padding: 20px;\n    background: #f8f9fa;\n    border-radius: 8px;\n    border-left: 4px solid #3498db;\n}\n\n.job-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-start;\n    margin-bottom: 15px;\n}\n\n.job-position {\n    font-size: 1.3em;\n    color: #2c3e50;\n    margin: 0 0 5px 0;\n    font-weight: 600;\n}\n\n.job-company {\n    color: #7f8c8d;\n    margin: 0;\n    font-size: 1.05em;\n}\n\n.job-date {\n    color: #95a5a6;\n    font-size: 0.9em;\n    font-weight: 500;\n    white-space: nowrap;\n}\n\n.task-list {\n    margin: 0;\n    padding-left: 20px;\n}\n\n.task-list li {\n    margin-bottom: 8px;\n    line-height: 1.6;\n    color: #555;\n}\n\n/* Education Styles */\n.education-item {\n    margin-bottom: 20px;\n    padding: 20px;\n    background: #f8f9fa;\n    border-radius: 8px;\n    border-left: 4px solid #e74c3c;\n}\n\n.education-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-start;\n}\n\n.degree {\n    font-size: 1.2em;\n    color: #2c3e50;\n    margin: 0 0 5px 0;\n    font-weight: 600;\n}\n\n.school-name {\n    color: #7f8c8d;\n    margin: 0;\n    font-size: 1em;\n}\n\n.education-date {\n    color: #95a5a6;\n    font-size: 0.9em;\n    font-weight: 500;\n    white-space: nowrap;\n}\n\n/* Links Styles */\n.links-container {\n    display: flex;\n    gap: 20px;\n    flex-wrap: wrap;\n}\n\n.link-item {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 20px;\n    background: #3498db;\n    color: white;\n    text-decoration: none;\n    border-radius: 5px;\n    transition: background 0.3s;\n    font-weight: 500;\n}\n\n.link-item:hover {\n    background: #2980b9;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n    .cv-container {\n        padding: 20px;\n    }\n    \n    .profile-section {\n        flex-direction: column;\n        text-align: center;\n    }\n    \n    .name {\n        font-size: 2em;\n    }\n    \n    .job-header,\n    .education-header {\n        flex-direction: column;\n        gap: 10px;\n    }\n    \n    .job-date,\n    .education-date {\n        text-align: left;\n    }\n}\n</style>",
+        "storeOutMessages": false,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 100,
+        "wires": [[]]
+    },
+    {
+        "id": "update_cv_button",
+        "type": "ui-button",
+        "z": "cv_flow",
+        "name": "Update CV",
+        "group": "cv_group",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "label": "Reload CV",
+        "emulateClick": false,
+        "tooltip": "Click to reload CV data",
+        "color": "",
+        "bgcolor": "#3498db",
+        "className": "",
+        "icon": "refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "reload",
+        "topicType": "str",
+        "x": 130,
+        "y": 160,
+        "wires": [["get_cv_from_flow"]]
+    },
+    {
+        "id": "get_cv_from_flow",
+        "type": "function",
+        "z": "cv_flow",
+        "name": "Get CV from Flow Context",
+        "func": "// Retrieve CV data from flow context\nconst cvData = flow.get('cvData');\n\nif (cvData) {\n    msg.payload = cvData;\n    return msg;\n} else {\n    // If no data in context, return sample data\n    msg.payload = {\n        \"title\": \"Professional Title\",\n        \"email\": \"email@example.com\",\n        \"phone\": \"+00-000-0000\",\n        \"address\": \"Your Address Here\",\n        \"skills\": [\"Skill 1\", \"Skill 2\", \"Skill 3\"],\n        \"jobs\": [],\n        \"schools\": [],\n        \"links\": {},\n        \"imageSrc\": \"https://via.placeholder.com/150\"\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 160,
+        "wires": [["cv_template"]]
+    },
+    {
+        "id": "comment_node",
+        "type": "comment",
+        "z": "cv_flow",
+        "name": "CV Template - Dynamic Data Flow",
+        "info": "This flow creates a professional CV template that accepts dynamic data.\n\nTo use:\n1. Inject CV data in JSON format\n2. The data will be displayed in a professional CV layout\n3. Use the 'Reload CV' button to refresh the display\n\nData Structure:\n```json\n{\n  \"title\": \"Job Title\",\n  \"email\": \"email@example.com\",\n  \"phone\": \"+00-000-0000\",\n  \"address\": \"Full Address\",\n  \"skills\": [\"Skill1\", \"Skill2\"],\n  \"jobs\": [\n    {\n      \"company\": \"Company Name\",\n      \"position\": \"Position\",\n      \"startDate\": \"Month Year\",\n      \"endDate\": \"Month Year\",\n      \"tasks\": [\"Task 1\", \"Task 2\"]\n    }\n  ],\n  \"schools\": [\n    {\n      \"degree\": \"Degree Name\",\n      \"schoolName\": \"School Name\",\n      \"startDate\": \"Month Year\",\n      \"endDate\": \"Month Year\"\n    }\n  ],\n  \"links\": {\n    \"github\": \"url\",\n    \"orcid\": \"url\",\n    \"ieee\": \"url\"\n  },\n  \"imageSrc\": \"image_url\"\n}\n```",
+        "x": 170,
+        "y": 40,
+        "wires": []
+    }
+]
